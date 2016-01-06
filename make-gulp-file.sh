@@ -2,15 +2,30 @@
 
 echo "Project Name?"
 read project_name
+echo "Project Description"
+read project_desc
 
 echo "Javascript directory? (js)"
 read js_dir;
+if [ "$js_dir" == "" ]; then
+	js_dir=js
+	echo "Default js directory selected"
+fi
 
 echo "sass directory? (scss)"
 read sass_dir;
+if [ "$sass_dir" == "" ]; then
+	sass_dir=scss
+	echo "Default scss dir selected";
+fi
 
 echo "css directory? (css)"
 read css_dir;
+
+if [ "$css_dir" == "" ]; then
+	css_dir=css
+	echo "Default css dir selected"
+fi
 
 
 read -r -d '' gulpfile <<- _GULPFILE_
@@ -52,6 +67,7 @@ gulp.task('html', function() {
 					  gulp.task('default', ['server','watch']);
 
 _GULPFILE_
+
 echo "$gulpfile" > gulpfile.js
 
 
@@ -60,7 +76,7 @@ read -r -d '' npm_package <<- _PACKAGE_JSON_
 {
   "name": "$project_name",
   "version": "1.0.0",
-  "description": "",
+  "description": "$project_desc",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
