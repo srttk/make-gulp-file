@@ -48,6 +48,11 @@ gulp.task('html', function() {
 
 					 });
 
+gulp.task('script',function(){
+    gulp.src('./$js_dir/*.js')
+      .pipe(connect.reload());
+});
+
 					 gulp.task('sass', function() {
 					   gulp.src('./$sass_dir/*.scss')
 						    .pipe(sass())
@@ -59,7 +64,8 @@ gulp.task('html', function() {
 
 					 gulp.task('watch', function() {
 					   gulp.watch(['./*.html'],['html']);
-						  gulp.watch(['./$sass_dir/*.scss'],['sass']);
+					   gulp.watch(['./$js_dir/*.js'],['script']);
+					   gulp.watch(['./$sass_dir/*.scss'],['sass']);
 
 					 });
 					  
