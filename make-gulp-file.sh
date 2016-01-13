@@ -1,9 +1,19 @@
 #! /bin/bash
 
+# make-gulp
+# gulp file generator , automate gulp file generation :) A funny project
+# Created by : Sarath 
+# http://github.com/saratonite
+
 echo "Project Name?"
 read project_name
 echo "Project Description"
 read project_desc
+
+#echo "Enter root directory (Default current dir)"
+#read root_dir
+
+
 
 echo "Javascript directory? (js)"
 read js_dir;
