@@ -22,6 +22,8 @@ if [ "$js_dir" == "" ]; then
 	echo "Default js directory selected"
 fi
 
+
+
 echo "sass directory? (scss)"
 read sass_dir;
 if [ "$sass_dir" == "" ]; then
@@ -63,6 +65,8 @@ gulp.task('script',function(){
       .pipe(connect.reload());
 });
 
+
+
 					 gulp.task('sass', function() {
 					   gulp.src('./$sass_dir/*.scss')
 						    .pipe(sass())
@@ -100,9 +104,9 @@ read -r -d '' npm_package <<- _PACKAGE_JSON_
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-connect": "^2.3.1",
-    "gulp-sass": "^2.1.1"
+    "gulp-autoprefixer": "*",
+    "gulp-connect": "*",
+    "gulp-sass": "*"
   }
 }
 
