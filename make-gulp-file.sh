@@ -42,49 +42,57 @@ fi
 
 read -r -d '' gulpfile <<- _GULPFILE_
 var gulp = require('gulp');
+var plumber = require('gulp-plumber');
 var connect = require('gulp-connect');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 
-gulp.task('server', function(){
-					 connect.server({
-					     livereload: true  
-						    
-								});
 
-					 });
+// Server Task
+gulp.task('server', function(){
+	connect.server({
+					 livereload: true  
+					});
+
+});
+
+// Html 
 
 gulp.task('html', function() {
-  gulp.src('./*.html')
-      .pipe(connect.reload());
+  		gulp.src('./*.html')
+      	.pipe(connect.reload());
 
-					 });
+});
+
+// Scripts
 
 gulp.task('script',function(){
     gulp.src('./$js_dir/*.js')
       .pipe(connect.reload());
 });
 
+// Sass
+gulp.task('sass', function() {
+	gulp.src('./$sass_dir/*.scss')
+	.pipe(plumber())
+	.pipe(sass())
+	.pipe(autoprefixer())
+	.pipe(gulp.dest('$css_dir'))
+	.pipe(connect.reload());
 
+});
 
-					 gulp.task('sass', function() {
-					   gulp.src('./$sass_dir/*.scss')
-						    .pipe(sass())
-							     .pipe(autoprefixer())
-								      .pipe(gulp.dest('$css_dir'))
-										    .pipe(connect.reload());
+// Watch
 
-					 });
+ gulp.task('watch', function() {
+		gulp.watch(['./*.html'],['html']);
+		gulp.watch(['./$js_dir/*.js'],['script']);
+	    gulp.watch(['./$sass_dir/*.scss'],['sass']);
 
-					 gulp.task('watch', function() {
-					   gulp.watch(['./*.html'],['html']);
-					   gulp.watch(['./$js_dir/*.js'],['script']);
-					   gulp.watch(['./$sass_dir/*.scss'],['sass']);
-
-					 });
+});
 					  
 
-					  gulp.task('default', ['server','watch']);
+gulp.task('default', ['server','watch']);
 
 _GULPFILE_
 
@@ -104,6 +112,7 @@ read -r -d '' npm_package <<- _PACKAGE_JSON_
   "author": "",
   "license": "ISC",
   "devDependencies": {
+  	"gulp-plumber": "*",
     "gulp-autoprefixer": "*",
     "gulp-connect": "*",
     "gulp-sass": "*"
