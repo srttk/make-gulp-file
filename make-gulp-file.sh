@@ -5,17 +5,18 @@
 # Created by : Sarath 
 # http://github.com/saratonite
 
-echo "Project Name?"
+echo -n "Project Name?"
 read project_name
-echo "Project Description"
+echo -n "Project Description"
 read project_desc
+
 
 #echo "Enter root directory (Default current dir)"
 #read root_dir
 
 
 
-echo "Javascript directory? (js)"
+echo -n "Javascript directory? (js)"
 read js_dir;
 if [ "$js_dir" == "" ]; then
 	js_dir=js
@@ -24,14 +25,14 @@ fi
 
 
 
-echo "sass directory? (scss)"
+echo -n "sass directory? (scss)"
 read sass_dir;
 if [ "$sass_dir" == "" ]; then
 	sass_dir=scss
 	echo "Default scss dir selected";
 fi
 
-echo "css directory? (css)"
+echo -n "css directory? (css)"
 read css_dir;
 
 if [ "$css_dir" == "" ]; then
